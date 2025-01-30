@@ -9,4 +9,5 @@ Gopkg.lock
 *.tfstate.backup.*
 *.tfstate.backup
 *.terraform.lock.hcl
-*.terraform/*
+.terraform/*
+**/.terraform/*
