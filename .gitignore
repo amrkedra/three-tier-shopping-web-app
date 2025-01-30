@@ -3,3 +3,8 @@
 *-private.*
 vendor/
 Gopkg.lock
+*.tfvars
+*.tfstate
+*.tfstate.backup
+*.tfstate.backup.*
+*.tfstate.backup
