@@ -3,28 +3,3 @@
 *-private.*
 vendor/
 Gopkg.lock
-*.tfvars
-*.tfstate
-*.tfstate.backup
-*.tfstate.backup.*
-*.tfstate.backup
-*.terraform.lock.hcl
-.terraform/*
-**/.terraform/*
-# Local .terraform directories
-.terraform/*
-
-# Ignore variables files
-*.tfvars
-
-# Ignore override files
-*.tfoverride
-
-# Ignore environment-specific files
-.envrc
-
-# Ignore CLI configuration files
-.terraformrc
-terraform.rc
-**/terraform-provider-aws_v5.82.2_x5
-**/terraform-provider-azurerm_v4.14.0_x5
