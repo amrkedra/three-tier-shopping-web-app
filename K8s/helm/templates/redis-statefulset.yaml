@@ -25,7 +25,7 @@ spec:
         - containerPort: 6379
 
         volumeMounts:
-          - name: data
+          - name: redis-claim
             mountPath: /mnt/redis
 
         resources:
