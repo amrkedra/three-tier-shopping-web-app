@@ -26,7 +26,7 @@ spec:
 
         volumeMounts:
           - name: data
-            mountPath: /mnt/redis1
+            mountPath: /mnt/redis
 
         resources:
           limits:
@@ -53,7 +53,7 @@ spec:
         name: redis-claim
       spec:
         accessModes: [ "ReadWriteOnce" ]
-        storageClassName: {{ .Values.redis.storageClassName }}
+        storageClassName: {{ .Values.storageClassName }}
         volumeMode: Filesystem
         resources:
           requests:
