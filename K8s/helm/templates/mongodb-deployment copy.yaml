@@ -4,6 +4,7 @@ metadata:
   name: mongodb
   labels:
     service: mongodb
+  namespace: {{ .Values.namespace }}
 spec:
   replicas: 1
   selector:
