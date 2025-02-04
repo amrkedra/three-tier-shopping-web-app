@@ -1,10 +1,11 @@
+
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   labels:
     service: redis
   name: redis
-  namespace: {{ .Values.Namespace }}
+  namespace: {{ .Values.namespace }}  # ✅ Ensure this matches the namespace in PV
 spec:
   replicas: 3
   selector:
@@ -18,24 +19,21 @@ spec:
     spec:
       serviceAccountName: robot-shop
       containers:
-      - name: redis
-        image: redis:4.0.6
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
-        ports:
-        - containerPort: 6379
-
-        volumeMounts:
-          - name: redis-claim
-            mountPath: /mnt/redis
-
-        resources:
-          limits:
-            cpu: 200m
-            memory: 100Mi
-          requests:
-            cpu: 100m
-            memory: 50Mi
-      restartPolicy: Always
+        - name: redis
+          image: redis:4.0.6
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - name: redis-claim  # ✅ Matches volumeClaimTemplates name
+              mountPath: /mnt/redis
+          resources:
+            limits:
+              cpu: 200m
+              memory: 100Mi
+            requests:
+              cpu: 100m
+              memory: 50Mi
       # {{- with .Values.redis.affinity }}
       # affinity:
       #   {{- toYaml . | nindent 8 }}
@@ -50,12 +48,14 @@ spec:
       # {{- end }}
   volumeClaimTemplates:
     - metadata:
-        name: redis-claim
+        name: redis-claim  # ✅ Ensure this matches the PV `claimRef.name`
       spec:
         accessModes: [ "ReadWriteOnce" ]
-        storageClassName: {{ .Values.storageClassName }}
+        storageClassName: {{ .Values.storageClassName }}  # ✅ Matches PV
         volumeMode: Filesystem
         resources:
           requests:
             storage: 1Gi
+
+
 

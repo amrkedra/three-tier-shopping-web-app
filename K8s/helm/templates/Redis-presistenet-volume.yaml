@@ -11,10 +11,11 @@ spec:
     - ReadWriteOnce
   volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: {{ .Values.storageClassName }}
+  storageClassName: {{ .Values.storageClassName }}  # ✅ Matches StatefulSet PVC
   hostPath:  # ✅ Uses local storage while allowing node binding
-    path: "/mnt/data/redis"
-  # nodeAffinity:  # ✅ Ensures this PV is used only by a specific node
+    path: /mnt/data/redis
+  # Uncomment if you want to bind the PV to a specific node
+  # nodeAffinity:  
   #   required:
   #     nodeSelectorTerms:
   #       - matchExpressions:
@@ -22,6 +23,3 @@ spec:
   #             operator: In
   #             values:
   #               - minikube  # Replace with your actual node name
-  # claimRef:
-  #   name: redis-claim
-  #   namespace: {{ .Values.namespace }} #remove claim ref to have dynamic binding
