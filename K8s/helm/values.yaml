@@ -1,7 +1,10 @@
 # Registry and repository for Docker images
 # Default is docker/robotshop/image:latest
 namespace: default
-rabbit-namespace: rabbitmq-system
+
+rabbit:
+  namespace: rabbitmqsystem
+
 image:
   repo: robotshop
   version: latest
