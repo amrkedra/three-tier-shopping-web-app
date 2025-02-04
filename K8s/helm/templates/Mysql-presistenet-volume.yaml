@@ -2,14 +2,14 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: mysql-pv
-  labels: mysql
+  labels:  # ✅ Fixed labels (key-value format)
     app: mysql
   namespace: {{ .Values.namespace }}
 spec:
   capacity:
     storage: 1Gi
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-SC
