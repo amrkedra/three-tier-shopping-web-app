@@ -4,6 +4,7 @@ metadata:
   labels:
     service: redis
   name: redis
+  namespace: {{ .Values.Namespace }}
 spec:
   replicas: 3
   selector:
@@ -15,18 +16,18 @@ spec:
       labels:
         service: redis
     spec:
-      {{ if .Values.psp.enabled }}
       serviceAccountName: robot-shop
-      {{ end }}
       containers:
       - name: redis
         image: redis:4.0.6
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: 6379
+
         volumeMounts:
           - name: data
             mountPath: /mnt/redis1
+
         resources:
           limits:
             cpu: 200m
@@ -49,13 +50,11 @@ spec:
       {{- end }}
   volumeClaimTemplates:
     - metadata:
-        name: data
+        name: redis-claim
       spec:
         accessModes: [ "ReadWriteOnce" ]
-        {{ if not .Values.openshift }}
         storageClassName: {{ .Values.redis.storageClassName }}
         volumeMode: Filesystem
-        {{ end }}
         resources:
           requests:
             storage: 1Gi

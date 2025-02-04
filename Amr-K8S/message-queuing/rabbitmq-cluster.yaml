@@ -10,8 +10,8 @@ spec:
       cpu: 200m
       memory: 500Mi
     limits:
-      cpu: 1
-      memory: 2Gi
+      cpu: 500m
+      memory: 1Gi
   rabbitmq:
     additionalConfig: |
       log.console.level = info
@@ -21,4 +21,3 @@ spec:
       default_user_tags.administrator = true
   service:
     type: LoadBalancer
-

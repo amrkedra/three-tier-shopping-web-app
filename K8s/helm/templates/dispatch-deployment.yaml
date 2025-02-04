@@ -4,6 +4,7 @@ metadata:
   name: dispatch
   labels:
     service: dispatch
+  namespace: {{ .Values.namespace }}
 spec:
   replicas: 1
   selector:
@@ -14,9 +15,7 @@ spec:
       labels:
         service: dispatch
     spec:
-      {{ if .Values.psp.enabled }}
       serviceAccountName: robot-shop
-      {{ end }}
       containers:
       - name: dispatch
         image: {{ .Values.image.repo }}/rs-dispatch:{{ .Values.image.version }}

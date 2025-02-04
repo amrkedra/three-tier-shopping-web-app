@@ -4,6 +4,7 @@ metadata:
   name: user
   labels:
     service: user
+  namespace: {{ .Values.namespace }}
 spec:
   ports:
   - name: http

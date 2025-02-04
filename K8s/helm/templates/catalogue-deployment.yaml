@@ -4,6 +4,7 @@ metadata:
   name: catalogue
   labels:
     service: catalogue
+  namespace: {{ .values.namespace }}
 spec:
   replicas: 1
   selector:
@@ -14,9 +15,7 @@ spec:
       labels:
         service: catalogue
     spec:
-      {{ if .Values.psp.enabled }}
       serviceAccountName: robot-shop
-      {{ end }}
       containers:
       - name: catalogue
         image: {{ .Values.image.repo }}/rs-catalogue:{{ .Values.image.version }}

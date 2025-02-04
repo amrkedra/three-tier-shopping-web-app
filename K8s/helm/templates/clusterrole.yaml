@@ -1,4 +1,3 @@
-{{ if .Values.psp.enabled }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -12,4 +11,3 @@ rules:
   - podsecuritypolicies
   verbs:
   - use
-{{ end }}

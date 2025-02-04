@@ -6,6 +6,7 @@ metadata:
   name: dispatch
   labels:
     service: dispatch
+  namespace: {{ .Values.namespace }}
 spec:
   clusterIP: None
   ports:

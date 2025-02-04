@@ -4,6 +4,7 @@ metadata:
   name: payment
   labels:
     service: payment
+  namespace: {{ .Values.namespace }}
 spec:
   ports:
   - name: http

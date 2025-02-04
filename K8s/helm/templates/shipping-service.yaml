@@ -4,6 +4,7 @@ metadata:
   name: shipping
   labels:
     service: shipping
+  namespace: {{ .Values.Namespace }}
 spec:
   ports:
   - name: http

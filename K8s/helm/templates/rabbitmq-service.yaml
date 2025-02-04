@@ -4,6 +4,7 @@ metadata:
   name: rabbitmq
   labels:
     service: rabbitmq
+  namespace: {{ .Values.rabbit-namespace }}
 spec:
   ports:
   - name: tcp-amqp

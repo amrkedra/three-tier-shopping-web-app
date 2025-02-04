@@ -4,6 +4,7 @@ metadata:
   name: cart
   labels:
     service: cart
+  namespace: {{ values.namespace }}
 spec:
   replicas: 1
   selector:
@@ -14,9 +15,7 @@ spec:
       labels:
         service: cart
     spec:
-      {{ if .Values.psp.enabled }}
       serviceAccountName: robot-shop
-      {{ end }}
       containers:
       - name: cart
         image: {{ .Values.image.repo }}/rs-cart:{{ .Values.image.version }}
