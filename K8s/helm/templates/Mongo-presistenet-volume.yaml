@@ -12,7 +12,7 @@ spec:
     - ReadWriteOnce
   volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: local-SC
+  storageClassName: {{ .Values.storageClassName }}
   claimRef:
     name: mongo-claim
     namespace: {{ .Values.namespace }}

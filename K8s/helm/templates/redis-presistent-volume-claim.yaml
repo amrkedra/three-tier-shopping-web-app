@@ -10,7 +10,7 @@
 #   resources:
 #     requests:
 #       storage: 1Gi
-#   storageClassName: local-SC
+#   storageClassName: {{ .Values.storageClassName }}
 #   selector:
 #     matchLabels:
 #       app: redis 
