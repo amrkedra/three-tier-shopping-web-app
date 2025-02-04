@@ -3,7 +3,7 @@ kind: PersistentVolume
 metadata:
   name: redis-pv
   labels: redis
-  app: redis
+    app: redis
   namespace: {{ .Values.namespace }}
 spec:
   capacity:

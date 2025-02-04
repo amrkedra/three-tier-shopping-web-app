@@ -3,7 +3,7 @@ kind: PersistentVolume
 metadata:
   name: mongo-pv
   labels: mongo
-  app: mongo
+    app: mongo
   namespace: {{ .Values.namespace }}
 spec:
   capacity:
