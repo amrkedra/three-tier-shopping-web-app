@@ -4,7 +4,6 @@ metadata:
   name: mongo-pv
   labels: 
     app: mongo
-  namespace: {{ .Values.namespace }}
 spec:
   capacity:
     storage: 1Gi
@@ -13,6 +12,16 @@ spec:
   volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Retain
   storageClassName: {{ .Values.storageClassName }}
+  local:  # ✅ Uses local storage while allowing node binding
+    path: "/mnt/data/mongo"
+  nodeAffinity:  # ✅ Ensures this PV is used only by a specific node
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - minikube  # Replace with your actual node name
   claimRef:
     name: mongo-claim
     namespace: {{ .Values.namespace }}
