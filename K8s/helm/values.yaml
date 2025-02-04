@@ -3,7 +3,7 @@
 namespace: default
 
 rabbit:
-  namespace: rabbitmqsystem
+  namespace: rabbitmq-system
 
 image:
   repo: robotshop
@@ -60,7 +60,7 @@ ratings: {}
 
 redis:
   # Storage class to use with redis statefulset.
-  storageClassName: local-SC
+  storageClassName: local-sc
 
 shipping: {}
 
