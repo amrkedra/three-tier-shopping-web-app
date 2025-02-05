@@ -27,11 +27,14 @@ spec:
   - robotshop-gateway
   http:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   - match:
     - uri:
         prefix: /
 >>>>>>> 68d59f62 (updated all helm charts and vlues and added service mesh and message broker)
+=======
+>>>>>>> 86581e6e (updated all helm charts and vlues and added service mesh and message broker)
   - route:
     - destination:
         host: web.default.svc.cluster.local
