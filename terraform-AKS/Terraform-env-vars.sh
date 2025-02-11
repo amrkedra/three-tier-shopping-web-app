@@ -10,10 +10,10 @@ export APPLICATION="shopping-app"
 # export SUFFIX="01" # Change to 02 for the second environment
 
 # Set Terraform variables
-export TF_VAR_tenant_id="ce2ca24b-31bd-4c57-a5c0-587475ef66d4"  # Tenant ID of the environment
-export TF_VAR_client_id="a833f3b2-4ace-4e92-97dc-085451cc31c1"  # Client ID for the service principal
-export TF_VAR_client_secret="x4Z8Q~.On9yz6JX6Vvl.Pr_Fi9os9Ma.C0UVTcWz"                  # Client secret for the service principal
-export TF_VAR_subscription_id="4f0973f0-6489-428b-b166-69fd7ae16bb8" # Subscription ID
+export TF_VAR_tenant_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"  # Tenant ID of the environment
+export TF_VAR_client_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"  # Client ID for the service principal
+export TF_VAR_client_secret="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"  # Client secret for the service principal
+export TF_VAR_subscription_id="xxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # Subscription ID
 
 # Optional: Echo to verify setup (remove in production)
 echo "TENANT: $TENANT"
