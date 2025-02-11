@@ -26,9 +26,11 @@ spec:
   gateways:
   - robotshop-gateway
   http:
+  - match:
+    - uri:
+        prefix: /
   - route:
     - destination:
         host: web.default.svc.cluster.local
         port:
           number: 8080
-
