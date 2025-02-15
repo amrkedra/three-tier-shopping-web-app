@@ -1,4 +1,3 @@
----
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
@@ -29,7 +28,7 @@ spec:
   - match:
     - uri:
         prefix: /
-  - route:
+    route:
     - destination:
         host: web.default.svc.cluster.local
         port:

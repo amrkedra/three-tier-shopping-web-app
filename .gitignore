@@ -5,3 +5,5 @@ vendor/
 Gopkg.lock
 *.terrform/*
 .terraform
+*/Terraform-env-vars.sh
+Terraform-env-vars.sh
