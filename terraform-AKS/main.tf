@@ -73,6 +73,9 @@ resource "azurerm_kubernetes_cluster" "amr-shopping-app-cluster" {
     name       = "nodepool01"
     node_count = 3
     vm_size    = "Standard_D2_v2"
+    auto_scaling_enabled = true
+    min_count = 1
+    max_count = 3
   }
 
   identity {
