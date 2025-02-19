@@ -42,7 +42,7 @@ jobs:
           node-version: 20
           registry-url: https://npm.pkg.github.com/
           
-      - run: npm ci
+      - run: npm install
         working-directory: cart  # Ensures it runs inside cart directory
       
       - run: npm publish
