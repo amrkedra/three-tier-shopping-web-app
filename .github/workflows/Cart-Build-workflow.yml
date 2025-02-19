@@ -36,15 +36,17 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@v4
-      - name: Set working directory
-        run: cd cart
-
+      
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: https://npm.pkg.github.com/
-      - run: cd cart    
-      - run: npm install
+          
+      - run: npm ci
+        working-directory: cart  # Ensures it runs inside cart directory
+      
       - run: npm publish
+        working-directory: cart  # Ensures it runs inside cart directory
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
