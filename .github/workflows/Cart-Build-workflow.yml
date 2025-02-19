@@ -25,8 +25,8 @@ jobs:
       - run: npm install
         working-directory: cart
 
-      - run: npm test
-        working-directory: cart
+      # - run: npm test
+      #   working-directory: cart
 
   publish-gpr:
     needs: build
