@@ -70,8 +70,8 @@ resource "azurerm_kubernetes_cluster" "amr-shopping-app-cluster" {
   dns_prefix          = "akscluster"
 
   default_node_pool {
-    name       = "nodepool01"
-    node_count = 3
+    name       = "Shopping-App-Node-Pool"
+    node_count = 2
     vm_size    = "Standard_D2_v2"
     auto_scaling_enabled = true
     min_count = 1
@@ -83,7 +83,7 @@ resource "azurerm_kubernetes_cluster" "amr-shopping-app-cluster" {
   }
 
   tags = {
-    Environment = "Production"
+    Environment = "Development"
   }
 }
 
