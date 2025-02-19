@@ -41,12 +41,13 @@ jobs:
         with:
           node-version: 20
           registry-url: https://npm.pkg.github.com/
-          
-      - run: npm install
-        working-directory: cart  # Ensures it runs inside cart directory
+          scope: "@amrkedra"  # Replace with your GitHub username if using scoped packages
+
+      - run: npm ci
+        working-directory: cart
       
-      - run: npm publish
-        working-directory: cart  # Ensures it runs inside cart directory
+      - run: npm publish --registry=https://npm.pkg.github.com/
+        working-directory: cart
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
