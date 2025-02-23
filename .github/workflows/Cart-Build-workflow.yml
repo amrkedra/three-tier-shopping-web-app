@@ -26,19 +26,17 @@ jobs:
       - name: Verify Java Version
         run: java -version
 
-      - name: Analyze with SonarQube
-        uses: SonarSource/sonarqube-scan-action@v1.1.0
+      - name: Analyze with SonarCloud
+        uses: SonarSource/sonarcloud-github-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-          JAVA_HOME: "/usr/lib/jvm/java-17-openjdk-amd64"  # Force Java 17
-          PATH: $JAVA_HOME/bin:$PATH
         with:
-          args: |
+          args: >
             -Dsonar.organization=amrkedra
             -Dsonar.projectKey=amrkedra_End-to-End-Kubernetes-Three-Tier-DevSecOps-Project
             -Dsonar.sources=cart
+            -Dsonar.verbose=true
             -Dsonar.verbose=true
   build:
     runs-on: ubuntu-latest
