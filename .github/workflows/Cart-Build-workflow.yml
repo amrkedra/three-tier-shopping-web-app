@@ -22,6 +22,9 @@ jobs:
         with:
           distribution: 'temurin'  # Use 'zulu' or 'adopt' if preferred
           java-version: '17'
+      
+      - name: Verify Java Version
+        run: java -version
 
       - name: Analyze with SonarQube
         uses: SonarSource/sonarqube-scan-action@v1.1.0
