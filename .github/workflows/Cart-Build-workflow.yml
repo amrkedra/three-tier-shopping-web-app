@@ -35,8 +35,9 @@ jobs:
         with:
           sarif_file: './cart/trivy-results.sarif'
 
-  Dpendency-Check-Owasp:
+  Dpendency-Check:
     name: OWASP Dependency-Check
+    needs: Scan
     runs-on: ubuntu-latest
 
     steps:
@@ -62,6 +63,7 @@ jobs:
 
   Analysis:
     name: SonarQube-Analysis
+    needs: Dpendency-Check
     runs-on: ubuntu-latest
 
     steps:
@@ -90,6 +92,7 @@ jobs:
             -Dsonar.verbose=true
   Build:
     name: NPM-Build
+    needs: Analysis
     runs-on: ubuntu-latest
     steps:
 
