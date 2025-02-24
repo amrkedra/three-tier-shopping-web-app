@@ -12,7 +12,7 @@ on:
 jobs:
 
   Scan:
-    name: Scan
+    name: Trivy-Scan
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -35,7 +35,7 @@ jobs:
         with:
           sarif_file: './cart/trivy-results.sarif'
 
-  Dpendency-Check:
+  Dpendency-Check-Owasp:
     name: OWASP Dependency-Check
     runs-on: ubuntu-latest
 
@@ -61,6 +61,7 @@ jobs:
           path: dependency-check-report.html
 
   Analysis:
+    name: SonarQube-Analysis
     runs-on: ubuntu-latest
 
     steps:
@@ -88,6 +89,7 @@ jobs:
             -Dsonar.sources=cart
             -Dsonar.verbose=true
   Build:
+    name: NPM-Build
     runs-on: ubuntu-latest
     steps:
 
