@@ -10,6 +10,31 @@ on:
     branches: [ master ]
 
 jobs:
+  
+  scan:
+    name: Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: change working directory
+        run: cd cart
+        
+      - name: Run Trivy vulnerability scanner in repo mode
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: 'fs'
+          ignore-unfixed: true
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results.sarif'
+
   Analysis:
     runs-on: ubuntu-latest
 
@@ -36,7 +61,6 @@ jobs:
             -Dsonar.organization=amrkedra
             -Dsonar.projectKey=amrkedra_End-to-End-Kubernetes-Three-Tier-DevSecOps-Project
             -Dsonar.sources=cart
-            -Dsonar.verbose=true
             -Dsonar.verbose=true
   build:
     runs-on: ubuntu-latest
