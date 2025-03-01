@@ -4,7 +4,7 @@ metadata:
   name: mongodb
   labels:
     service: mongodb
-  namespace: {{ .Values.namespace }}
+  # replicas: 1  replicas to b used when no HPA used
 spec:
   replicas: 1
   selector:
