@@ -3,13 +3,13 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: autoscaler-for-{{ . }}
-  namespace: {{ $.Values.Namespace }}  # Use $ to access the root context
+  name: autoscaler-for-{{ . | quote }}
+  namespace: {{ $.Values.Namespace | quote }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ . }}
+    name: {{ . | quote }}
   minReplicas: 1
   maxReplicas: 5
   metrics:
