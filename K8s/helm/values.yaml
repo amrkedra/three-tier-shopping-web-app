@@ -67,3 +67,7 @@ shipping: {}
 user: {}
 
 web: {}
+
+Namespace: default
+
+apps: [ "cart", "catalogue", "dispatch", "mongodb", "mysql", "payment", "ratings", "shipping", "user", "web" ]
