@@ -1,8 +1,10 @@
+{{- range .Values.apps }}
+---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: autoscaler-for-{{ . }}
-  namespace: {{ .Values.Namespace }}
+  namespace: {{ $.Values.Namespace }}  # Use $ to access the root context
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
@@ -17,3 +19,4 @@ spec:
       target:
         type: Utilization
         averageUtilization: 50
+{{- end }}
