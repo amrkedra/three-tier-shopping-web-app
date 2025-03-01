@@ -1,52 +1,44 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ratings
+  name: mongodb
   labels:
-    service: ratings
-  namespace: {{ .Values.Namespace }}
-spec:
+    service: mongodb
   # replicas: 1  replicas to b used when no HPA used
+spec:
+  replicas: 1
   selector:
     matchLabels:
-      service: ratings
+      service: mongodb
   template:
     metadata:
       labels:
-        service: ratings
+        service: mongodb
     spec:
       serviceAccountName: robot-shop
       containers:
-      - name: ratings
-        image: {{ .Values.image.repo }}/rs-ratings:{{ .Values.image.version }}
+      - name: mongodb
+        image: {{ .Values.image.repo }}/rs-mongodb:{{ .Values.image.version }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
-        - containerPort: 80
+        - containerPort: 27017
         resources:
           limits:
             cpu: 200m
-            memory: 100Mi
+            memory: 200Mi
           requests:
             cpu: 100m
-            memory: 50Mi
-        readinessProbe:
-          httpGet:
-            path: /_health
-            port: 80
-          initialDelaySeconds: 5
-          periodSeconds: 5
-          failureThreshold: 30
-          successThreshold: 1
+            memory: 100Mi
       restartPolicy: Always
-      {{- with .Values.ratings.affinity }}
+      {{- with .Values.mongodb.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.ratings.nodeSelector }}
+      {{- with .Values.mongodb.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.ratings.tolerations }}
+      {{- with .Values.mongodb.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}

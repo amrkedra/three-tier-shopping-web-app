@@ -6,7 +6,7 @@ metadata:
     service: shipping
   namespace: {{ .Values.Namespace }}
 spec:
-  replicas: 1
+  # replicas: 1  replicas to b used when no HPA used
   selector:
     matchLabels:
       service: shipping
