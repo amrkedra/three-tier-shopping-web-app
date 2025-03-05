@@ -148,8 +148,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
             
-      - name: Set working directory
-        run: cd cart 
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -160,6 +158,9 @@ jobs:
       - name: Get Build Number
         run: echo "BUILD_NUMBER=${{ github.run_number }}" >> $GITHUB_ENV
 
+      - name: Set working directory
+        run: cd cart 
+        
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
