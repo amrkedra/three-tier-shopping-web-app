@@ -134,34 +134,25 @@ jobs:
   #         NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
   Docker-Build-Push:
-    name: Docker-Build-Push
-    needs: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          registry: docker.io 
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      
-      - name: Checkout Code
-        uses: actions/checkout@v4
-            
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+      name: Docker-Build-Push
+      needs: Build
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout Code
+          uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        - name: Get Build Number
+          run: echo "BUILD_NUMBER=${{ github.run_number }}" >> $GITHUB_ENV
 
-      - name: Get Build Number
-        run: echo "BUILD_NUMBER=${{ github.run_number }}" >> $GITHUB_ENV
-
-      - name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          push: true
-          context: ./cart  # This tells Docker where to look for the Dockerfile
-          tags: amrkedra/cart:${{ env.BUILD_NUMBER }}
+        - name: Login, Build, and Push
+          uses: docker/build-push-action@v6
+          with:
+            push: true
+            context: ./cart  # Look for Dockerfile inside "cart" folder
+            tags: amrkedra/cart:${{ env.BUILD_NUMBER }}
+            load: true 
+            build-args: |
+              USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
+              PASSWORD=${{ secrets.DOCKERHUB_TOKEN }}
 
       
