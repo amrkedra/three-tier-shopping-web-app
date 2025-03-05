@@ -144,7 +144,10 @@ jobs:
           registry: docker.io 
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
+      
+      - name: Checkout Code
+        uses: actions/checkout@v4
+            
       - name: Set working directory
         run: cd cart 
 
