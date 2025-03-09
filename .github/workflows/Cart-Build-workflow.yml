@@ -108,31 +108,7 @@ jobs:
       - run: npm install
         working-directory: cart
 
-      # - run: npm test
-      #   working-directory: cart
-
-  # publish-gpr:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   permissions:
-  #     contents: read
-  #     packages: write
-  #   steps:
-  #     - uses: actions/checkout@v4
-      
-  #     - uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 20
-  #         registry-url: https://npm.pkg.github.com/
-          
-  #     - run: npm install
-  #       working-directory: cart  # Ensures it runs inside cart directory
-      
-  #     - run: npm publish
-  #       working-directory: cart  # Ensures it runs inside cart directory
-  #       env:
-  #         NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
+        
   Docker-Build-Push:
       name: Docker-Build-Push
       needs: Build
